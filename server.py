@@ -1,7 +1,5 @@
 import datetime
-import json
 import os
-import re
 
 from flask import Flask
 from flask import render_template
@@ -15,16 +13,14 @@ def home_page():
     now = datetime.datetime.now()
     return render_template('home.html', current_time=now.ctime())
 
-def get_sqldb_dsn(vcap_services):
-    """Returns the data source name for IBM SQL DB."""
+
+def get_elephantsql_dsn(vcap_services):
+    """Returns the data source name for ElephantSQL."""
     parsed = json.loads(vcap_services)
-    credentials = parsed["sqldb"][0]["credentials"]
-    user = credentials["username"]
-    password = credentials["password"]
-    host = credentials["hostname"]
-    port = credentials["port"]
-    dbname = credentials["db"]
-    dsn = """DATABASE={};HOSTNAME={};PORT={};UID={};PWD={};""".format(dbname, host, port, user, password)
+    uri = parsed["elephantsql"][0]["credentials"]["uri"]
+    match = re.match('postgres://(.*?):(.*?)@(.*?)(:(\d+))?/(.*)', uri)
+    user, password, host, _, port, dbname = match.groups()
+    dsn = """user='{}' password='{}' host='{}' port={} dbname='{}'""".format(user, password, host, port, dbname)
     return dsn
 
 
@@ -38,6 +34,6 @@ if __name__ == '__main__':
     if VCAP_SERVICES is not None:
         app.config['dsn'] = get_sqldb_dsn(VCAP_SERVICES)
     else:
-        app.config['dsn'] = """DATABASE=itucsdb;HOSTNAME=localhost;PORT=50000;UID=vagrant;PWD=vagrant;"""
+        app.config['dsn'] =  """host='localhost' port=54321  password='vagrant' user='vagrant' dbname='itucsdb'"""
 
     app.run(host='0.0.0.0', port=port, debug=debug)
