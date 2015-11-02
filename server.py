@@ -26,7 +26,6 @@ def sponsorsList():
     if request.method == 'GET':
         now = datetime.datetime.now()
         data=sponsorTable.select_sponsors()
-        sponsorTable.close_con()
         return render_template('sponsors.html', current_time=now.ctime(),rows=data)
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
