@@ -5,8 +5,9 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist
+from pages import HomePage,initPage,sponsorslist, playerslist
 from tables import sponsors
+from tables import players
 
 app = Flask(__name__)
 
@@ -40,6 +41,28 @@ def sponsorsList():
         sponsorTable.add_sponsor(name,country,age)
         sponsorTable.close_con()
         return redirect(url_for('sponsorsList'))
+
+@app.route('/playersList', methods=['GET', 'POST'])
+def playersList():
+    dsn=app.config['dsn']
+    playerTable = players.Players(dsn)
+    if request.method == 'GET':
+        now = datetime.datetime.now()
+        data=playerTable.select_players()
+        return render_template('players.html', current_time=now.ctime(),rows=data)
+    elif 'Delete' in request.form:
+        keys = request.form.getlist('movies_to_delete')
+        for key in keys:
+            playerTable.delete_player(key)
+        playerTable.close_con()
+        return redirect(url_for('playersList'))
+    elif 'Add' in request.form:
+        name=request.form['Name']
+        country=request.form['Country']
+        age=request.form['Age']
+        playerTable.add_player(name,country,age)
+        playerTable.close_con()
+        return redirect(url_for('playersList'))
 
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
