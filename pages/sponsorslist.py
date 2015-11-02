@@ -1,8 +1,8 @@
 
-from flask import url_for,redirect,render_template
+from flask import url_for,redirect,render_template,request
 from tables import sponsors
 
-def sponsorsList(dsn,request):
+def sponsorsList(dsn):
     companies = sponsors.Sponsors(dsn)
     if request.method == 'GET':
         now = datetime.datetime.now()
