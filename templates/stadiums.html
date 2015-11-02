@@ -2,17 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Gokay</title>
+    <title>Burak</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
-	<form action="{{ url_for('sponsorsList') }}" method="post">
+	<form action="{{ url_for('stadiumsList') }}" method="post">
 		<table>
 			<tr>
 				<td></td>
-				<td><b>Company Name </b></td>
-				<td><b>Country </b></td>
-				<td><b>Employee Count</b></td>
+				<td><b>Stadium Name </b></td>
+				<td><b>City </b></td>
+				<td><b>Year Built</b></td>
 		    	</tr>
 		{% for row in rows %}
 			<tr>
@@ -25,8 +25,8 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="Name" value="" />    </td>
-				<td><input type="text" name="Country" value="" /> </td>
-				<td><input type="number" name="Count" value="" />     </td>
+				<td><input type="text" name="City" value="" /> </td>
+				<td><input type="number" name="Year" value="" />     </td>
 		    </tr>
 		</table>
 		<input type="submit" name="Add"value="Add" />

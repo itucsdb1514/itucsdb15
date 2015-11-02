@@ -1,6 +1,7 @@
 from tables import sponsors
 from tables import players
 from tables import teams
+from tables import stadiums
 from pages import HomePage
 
 def InitPageFunc(dsn):
@@ -13,5 +14,8 @@ def InitPageFunc(dsn):
     teamTable = teams.Teams(dsn)
     teamTable.create_table()
     teamTable.close_con()
+    stadiumTable = stadiums.Stadiums(dsn)
+    stadiumTable.create_table()
+    stadiumTable.close_con()
 
     return HomePage.HomePageFunc()

@@ -5,10 +5,11 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist, playerslist, teamslist
+from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist
 from tables import sponsors
 from tables import players
 from tables import teams
+from tables import stadiums
 
 app = Flask(__name__)
 
@@ -42,6 +43,28 @@ def sponsorsList():
         sponsorTable.add_sponsor(name,country,age)
         sponsorTable.close_con()
         return redirect(url_for('sponsorsList'))
+
+@app.route('/stadiumsList', methods=['GET', 'POST'])
+def stadiumsList():
+    dsn=app.config['dsn']
+    stadiumTable = stadiums.Stadiums(dsn)
+    if request.method == 'GET':
+        now = datetime.datetime.now()
+        data=stadiumTable.select_stadiums()
+        return render_template('stadiums.html', current_time=now.ctime(),rows=data)
+    elif 'Delete' in request.form:
+        keys = request.form.getlist('movies_to_delete')
+        for key in keys:
+            stadiumTable.delete_stadium(key)
+        stadiumTable.close_con()
+        return redirect(url_for('stadiumsList'))
+    elif 'Add' in request.form:
+        name=request.form['Name']
+        city=request.form['City']
+        year=request.form['Year']
+        stadiumTable.add_stadium(name,city,year)
+        stadiumTable.close_con()
+        return redirect(url_for('stadiumsList'))
 
 @app.route('/playersList', methods=['GET', 'POST'])
 def playersList():
