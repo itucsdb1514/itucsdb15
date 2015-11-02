@@ -21,6 +21,8 @@ def InitDb():
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
     companies = sponsors.Sponsors(dsn)
+    nowS = datetime.datetime.now()
+    return render_template('home.html', current_time=nowS.ctime())
     if request.method == 'GET':
         now = datetime.datetime.now()
         data=companies.select_sponsors()
