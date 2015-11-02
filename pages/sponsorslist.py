@@ -10,8 +10,7 @@ def sponsorsList(dsn):
         now = datetime.datetime.now()
         data=companies.select_sponsors()
         companies.close_con()
-        retun "Deneme"
-        #return render_template('sponsors.html', current_time=now.ctime(),rows=data)
+        return render_template('sponsors.html', current_time=now.ctime())
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:
