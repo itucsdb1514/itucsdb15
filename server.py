@@ -20,6 +20,7 @@ def InitDb():
 
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
+    return initPage.InitPageFunc(app.config['dsn'])
     companies = sponsors.Sponsors(app.config['dsn'])
     if request.method == 'GET':
         now = datetime.datetime.now()
