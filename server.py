@@ -6,6 +6,7 @@ import re
 from flask import Flask
 from flask import render_template,request
 from pages import HomePage,initPage,sponsorslist
+from tables import sponsors
 
 app = Flask(__name__)
 
