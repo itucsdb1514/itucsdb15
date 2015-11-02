@@ -20,7 +20,7 @@ def InitDb():
 
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
-    #companies = sponsors.Sponsors(app.config['dsn'])
+    companies = sponsors.Sponsors(app.config['dsn'])
     if request.method == 'GET':
         now = datetime.datetime.now()
         data=(1,"DF","DF","ER")#companies.select_sponsors()
