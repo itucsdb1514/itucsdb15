@@ -20,23 +20,24 @@ def InitDb():
 
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
-    companies = sponsors.Sponsors(app.config['dsn'])
+    #companies = sponsors.Sponsors(app.config['dsn'])
     if request.method == 'GET':
         now = datetime.datetime.now()
-        data=companies.select_sponsors()
+        data=(1,"DF","DF","ER")#companies.select_sponsors()
         return render_template('sponsors.html', current_time=now.ctime(),rows=data)
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:
-            companies.delete_sponsor(key)
-        companies.close_con()
+            pass
+            #companies.delete_sponsor(key)
+        #companies.close_con()
         return redirect(url_for('sponsorsList'))
     elif 'Add' in request.form:
         name=request.form['Name']
         country=request.form['Country']
         age=request.form['Count']
-        companies.add_sponsor(name,country,age)
-        companies.close_con()
+        #companies.add_sponsor(name,country,age)
+        #companies.close_con()
         return redirect(url_for('sponsorsList'))
 
 def get_elephantsql_dsn(vcap_services):
