@@ -4,7 +4,7 @@ import os
 import re
 
 from flask import Flask
-from flask import render_template,request
+from flask import render_template,request,url_for,redirect
 from pages import HomePage,initPage,sponsorslist
 from tables import sponsors
 
