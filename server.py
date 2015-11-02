@@ -20,7 +20,9 @@ def InitDb():
 
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
-    return sponsorslist.sponsorsList(app.config['dsn'])
+    now = datetime.datetime.now()
+    return render_template('sponsors.html', current_time=now.ctime())
+    #return sponsorslist.sponsorsList(app.config['dsn'])
 
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
