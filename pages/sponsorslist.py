@@ -1,10 +1,8 @@
-from flask import render_template
-from flask import request
-from flask import url_for
-from flask import redirect
+
+from flask import url_for,redirect,render_template
 from tables import sponsors
 
-def sponsorsList(dsn):
+def sponsorsList(dsn,request):
     companies = sponsors.Sponsors(dsn)
     if request.method == 'GET':
         now = datetime.datetime.now()
