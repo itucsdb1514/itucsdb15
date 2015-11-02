@@ -4,7 +4,7 @@ import os
 import re
 
 from flask import Flask
-from flask import render_template
+from flask import render_template,request
 from pages import HomePage,initPage,sponsorslist
 
 app = Flask(__name__)
@@ -20,9 +20,7 @@ def InitDb():
 
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
-    now = datetime.datetime.now()
-    return render_template('sponsors.html', current_time=now.ctime())
-    #return sponsorslist.sponsorsList(app.config['dsn'])
+    return sponsorslist.sponsorsList(app.config['dsn'],request)
 
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
