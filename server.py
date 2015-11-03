@@ -5,11 +5,12 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist
+from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist
 from tables import sponsors
 from tables import players
 from tables import teams
 from tables import stadiums
+from tables import comments
 
 app = Flask(__name__)
 
@@ -109,6 +110,28 @@ def teamsList():
         teamTable.add_team(name,country,year)
         teamTable.close_con()
         return redirect(url_for('teamsList'))
+
+@app.route('/commentsList', methods=['GET', 'POST'])
+def commentsList():
+    dsn=app.config['dsn']
+    commentTable = comments.Comments(dsn)
+    if request.method == 'GET':
+        now = datetime.datetime.now()
+        data=commentTable.select_comments()
+        return render_template('comments.html', current_time=now.ctime(),rows=data)
+    elif 'Delete' in request.form:
+        keys = request.form.getlist('movies_to_delete')
+        for key in keys:
+            commentTable.delete_comment(key)
+        commentTable.close_con()
+        return redirect(url_for('commentsList'))
+    elif 'Add' in request.form:
+        player=request.form['Player']
+        notes=request.form['Notes']
+        point=request.form['Point']
+        commentTable.add_comment(player,notes,point)
+        commentTable.close_con()
+        return redirect(url_for('commentsList'))
 
 
 
