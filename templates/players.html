@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Zeynep</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
 	<form action="{{ url_for('playersList') }}" method="post">
 		<table>
 			<tr>
@@ -32,8 +28,4 @@
 		<input type="submit" name="Add"value="Add" />
 		<input type="submit" name="Delete"value="Delete" />
 	</form>
-    <footer>
-      <div id="datetime">{{ current_time }}</div>
-    </footer>
-  </body>
-</html>
+{% endblock %}

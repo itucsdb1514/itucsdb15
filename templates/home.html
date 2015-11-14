@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-  </head>
-  <body>
-    <h1>Baseball!</h1>
-    <a href="/initDB">Initialize Database</a>
-    <br><br>
-    <a href="/sponsorsList">Sponsors List</a>&nbsp;
-    <a href="/playersList">Players List</a>&nbsp;
-    <a href="/teamsList">Teams List</a>&nbsp;
-    <a href="/stadiumsList">Stadiums List</a>&nbsp;
-    <a href="/commentsList">Comments List</a>&nbsp;
-    <footer>
-      <div id="datetime">{{ current_time }}</div>
-    </footer>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+{% endblock %}
