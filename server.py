@@ -26,112 +26,33 @@ def InitDb():
 @app.route('/sponsorsList', methods=['GET', 'POST'])
 def sponsorsList():
     dsn=app.config['dsn']
-    sponsorTable = sponsors.Sponsors(dsn)
-    if request.method == 'GET':
-        now = datetime.datetime.now()
-        data=sponsorTable.select_sponsors()
-        return render_template('sponsors.html', current_time=now.ctime(),rows=data)
-    elif 'Delete' in request.form:
-        keys = request.form.getlist('movies_to_delete')
-        for key in keys:
-            sponsorTable.delete_sponsor(key)
-        sponsorTable.close_con()
-        return redirect(url_for('sponsorsList'))
-    elif 'Add' in request.form:
-        name=request.form['Name']
-        country=request.form['Country']
-        age=request.form['Count']
-        sponsorTable.add_sponsor(name,country,age)
-        sponsorTable.close_con()
-        return redirect(url_for('sponsorsList'))
+    return sponsorslist.sponsorsList(dsn)
+
 
 @app.route('/stadiumsList', methods=['GET', 'POST'])
 def stadiumsList():
     dsn=app.config['dsn']
-    stadiumTable = stadiums.Stadiums(dsn)
-    if request.method == 'GET':
-        now = datetime.datetime.now()
-        data=stadiumTable.select_stadiums()
-        return render_template('stadiums.html', current_time=now.ctime(),rows=data)
-    elif 'Delete' in request.form:
-        keys = request.form.getlist('movies_to_delete')
-        for key in keys:
-            stadiumTable.delete_stadium(key)
-        stadiumTable.close_con()
-        return redirect(url_for('stadiumsList'))
-    elif 'Add' in request.form:
-        name=request.form['Name']
-        city=request.form['City']
-        year=request.form['Year']
-        stadiumTable.add_stadium(name,city,year)
-        stadiumTable.close_con()
-        return redirect(url_for('stadiumsList'))
+    return stadiumslist.stadiumsList(dsn)
 
 @app.route('/playersList', methods=['GET', 'POST'])
 def playersList():
     dsn=app.config['dsn']
-    playerTable = players.Players(dsn)
-    if request.method == 'GET':
-        now = datetime.datetime.now()
-        data=playerTable.select_players()
-        return render_template('players.html', current_time=now.ctime(),rows=data)
-    elif 'Delete' in request.form:
-        keys = request.form.getlist('movies_to_delete')
-        for key in keys:
-            playerTable.delete_player(key)
-        playerTable.close_con()
-        return redirect(url_for('playersList'))
-    elif 'Add' in request.form:
-        name=request.form['Name']
-        country=request.form['Country']
-        age=request.form['Age']
-        playerTable.add_player(name,country,age)
-        playerTable.close_con()
-        return redirect(url_for('playersList'))
+    return playerslist.playersList(dsn)
 
 @app.route('/teamsList', methods=['GET', 'POST'])
 def teamsList():
     dsn=app.config['dsn']
-    teamTable = teams.Teams(dsn)
-    if request.method == 'GET':
-        now = datetime.datetime.now()
-        data=teamTable.select_teams()
-        return render_template('teams.html', current_time=now.ctime(),rows=data)
-    elif 'Delete' in request.form:
-        keys = request.form.getlist('movies_to_delete')
-        for key in keys:
-            teamTable.delete_team(key)
-        teamTable.close_con()
-        return redirect(url_for('teamsList'))
-    elif 'Add' in request.form:
-        name=request.form['Name']
-        country=request.form['Country']
-        year=request.form['Year']
-        teamTable.add_team(name,country,year)
-        teamTable.close_con()
-        return redirect(url_for('teamsList'))
+    return teamslist.teamsList(dsn)
 
 @app.route('/commentsList', methods=['GET', 'POST'])
 def commentsList():
     dsn=app.config['dsn']
-    commentTable = comments.Comments(dsn)
-    if request.method == 'GET':
-        now = datetime.datetime.now()
-        data=commentTable.select_comments()
-        return render_template('comments.html', current_time=now.ctime(),rows=data)
-    elif 'Delete' in request.form:
-        keys = request.form.getlist('movies_to_delete')
-        for key in keys:
-            commentTable.delete_comment(key)
-        commentTable.close_con()
-        return redirect(url_for('commentsList'))
-    elif 'Add' in request.form:
-        player=request.form['Player']
-        notes=request.form['Notes']
-        point=request.form['Point']
-        commentTable.add_comment(player,notes,point)
-        commentTable.close_con()
-        return redirect(url_for('commentsList'))
+    return commentslist.commentsList(dsn)
+
+@app.route('/commentsList/Update', methods=['GET', 'POST'])
+def commentsListUpdate():
+    dsn=app.config['dsn']
+    return commentslist.updateCommentsList(dsn)
 
 
 
