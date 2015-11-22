@@ -17,7 +17,7 @@ class Nats:
             stat1 = """ CREATE TABLE NATS (
                 ID SERIAL PRIMARY KEY,
                 NAT VARCHAR(40),
-                FK_PlayersID INTEGER REFERENCES PLAYERS
+                FK_PlayersID INTEGER REFERENCES PLAYERS ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
             stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Oflu', 1)"""
@@ -59,14 +59,14 @@ class Nats:
         self.connection.commit()
 
     def find_Joint_Nat(self, player, nat):
-        statement = """ SELECT PLAYERS.Name, NAT FROM NATS INNER JOIN PLAYERS ON PLAYERS.ID=NATS.FK_PLAYERSID  """
+        statement = """ SELECT NATS.ID, PLAYERS.Name, NAT FROM NATS INNER JOIN PLAYERS ON PLAYERS.ID=NATS.FK_PLAYERSID  """
         condition=''
         if(player.strip()):
-            condition+=""" PLAYERS.Name='{}' """.format(player)
+            condition+=""" PLAYERS.Name LIKE '%{}%' """.format(player)
         if(nat.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" NAT='{}' """.format(nat)
+            condition+=""" NAT LIKE '%{}%' """.format(nat)
         if(condition.strip()):
             condition=' WHERE '+condition
         self.cursor.execute(statement+condition)

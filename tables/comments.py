@@ -19,7 +19,7 @@ class Comments:
                 ID SERIAL PRIMARY KEY,
                 NOTES VARCHAR(40),
                 PointCount INTEGER,
-                FK_PlayersID INTEGER REFERENCES PLAYERS
+                FK_PlayersID INTEGER REFERENCES PLAYERS ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
             stat1 = """ INSERT INTO Comments ( NOTES, PointCount,FK_PlayersID) VALUES( 'Well-played', 9,1)"""
@@ -38,6 +38,7 @@ class Comments:
         statement = """ SELECT * FROM Comments """
         self.cursor.execute(statement)
         return self.cursor
+
     def find_Comments(self,player,notes,pointCount):
         condition=''
         if(notes.strip()):

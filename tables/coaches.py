@@ -20,7 +20,7 @@ class Coaches:
                 NAME VARCHAR(40),
                 COUNTRY VARCHAR(40),
                 AGE INTEGER,
-                FK_TeamsID INTEGER REFERENCES Teams
+                FK_TeamsID INTEGER REFERENCES Teams ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
             stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID) VALUES('Joe Girardi', 'USA', 51,1)"""
@@ -42,17 +42,15 @@ class Coaches:
     def find_Coaches(self,team,name,country,age):
         condition=''
         if(name.strip()):
-            if(condition.strip()):
-                condition+='AND'
-            condition+=""" NAME='{}' """.format(name)
+            condition+=""" NAME LIKE '%{}%' """.format(name)
         if(country.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" COUNTRY={} """.format(country)
+            condition+=""" COUNTRY LIKE '%{}%' """.format(country)
         if(age.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" AGE={} """.format(age)
+            condition+=""" AGE = {} """.format(age)
         if(condition.strip()):
             condition=' WHERE '+condition
 

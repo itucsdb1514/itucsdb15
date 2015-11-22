@@ -10,6 +10,7 @@ class Players:
         try:
             stat1 = """ DROP TABLE PLAYERS """
             self.cursor.execute(stat1)
+            print('*********')
             self.connection.commit()
         except dbapi2.DatabaseError:
             self.connection.rollback()
@@ -21,6 +22,7 @@ class Players:
                 AGE INTEGER
                 ) """
             self.cursor.execute(stat1)
+            print('*********')
             stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Ahmet Sezer', 'Turkey', 23)"""
             self.cursor.execute(stat1)
             stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Yılmaz Kel', 'Turkey', 30)"""
@@ -35,6 +37,30 @@ class Players:
 
     def select_players(self):
         statement = """ SELECT * FROM PLAYERS """
+        self.cursor.execute(statement)
+        return self.cursor
+
+    def update_player(self, Id, name, country, age):
+        statement = """UPDATE PLAYERS SET NAME = '{}', COUNTRY = '{}', AGE = {} WHERE ID = {}""".format( name, country, age, Id)
+        self.cursor.execute(statement)
+        self.connection.commit()
+
+    def find_Players(self, name, country, age):
+        condition=''
+        if(name.strip()):
+            condition+=""" NAME LIKE '%{}%' """.format(name)
+        if(country.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" COUNTRY LIKE '%{}%' """.format(country)
+        if(age.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" AGE = {} """.format(age)
+        if(condition.strip()):
+            condition=' WHERE '+ condition
+
+        statement = """ SELECT * FROM PLAYERS """+condition
         self.cursor.execute(statement)
         return self.cursor
 
