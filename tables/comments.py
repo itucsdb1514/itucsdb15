@@ -72,7 +72,6 @@ class Comments:
         statement = """UPDATE Comments SET  NOTES = '{}', PointCount = {} WHERE ID = {}""".format( notes, point, Id)
         self.cursor.execute(statement)
         self.connection.commit()
-
     def select_Joint_Comment(self):
         statement = """ SELECT Comments.ID,PLAYERS.Name,NOTES,PointCount FROM Comments INNER JOIN PLAYERS ON PLAYERS.ID=COMMENTS.FK_PLAYERSID  """
         self.cursor.execute(statement)

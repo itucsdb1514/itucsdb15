@@ -27,7 +27,6 @@ def commentsList(dsn):
     elif 'Update2' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:
-
            notes=request.form['Notes'+key]
            point=request.form['Point'+key]
            commentTable.update_comment(key,notes,point)

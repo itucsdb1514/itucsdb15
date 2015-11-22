@@ -3,6 +3,7 @@ from tables import players
 from tables import teams
 from tables import stadiums
 from tables import comments
+from tables import coaches
 from pages import HomePage
 
 def InitPageFunc(dsn):
@@ -15,6 +16,9 @@ def InitPageFunc(dsn):
     teamTable = teams.Teams(dsn)
     teamTable.create_table()
     teamTable.close_con()
+    coachTable = coaches.Coaches(dsn)
+    coachTable.create_table()
+    coachTable.close_con()
     stadiumTable = stadiums.Stadiums(dsn)
     stadiumTable.create_table()
     stadiumTable.close_con()

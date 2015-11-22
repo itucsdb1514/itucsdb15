@@ -5,12 +5,14 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist
+from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist
 from tables import sponsors
 from tables import players
 from tables import teams
 from tables import stadiums
 from tables import comments
+from tables import coaches
+
 
 app = Flask(__name__)
 
@@ -43,6 +45,16 @@ def playersList():
 def teamsList():
     dsn=app.config['dsn']
     return teamslist.teamsList(dsn)
+
+@app.route('/coachesList', methods=['GET', 'POST'])
+def coachesList():
+    dsn=app.config['dsn']
+    return coacheslist.coachesList(dsn)
+
+@app.route('/coachesList/Update', methods=['GET', 'POST'])
+def coachesListUpdate():
+    dsn=app.config['dsn']
+    return coacheslist.updateCoachesList(dsn)
 
 @app.route('/commentsList', methods=['GET', 'POST'])
 def commentsList():
