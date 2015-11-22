@@ -36,6 +36,32 @@ class Teams:
         self.cursor.execute(statement)
         return self.cursor
 
+    def update_team(self, Id, name, country, year):
+        statement = """UPDATE Teams SET NAME = '{}', COUNTRY = '{}', YEAR = {} WHERE ID = {}""".format( name, country, year, Id)
+        self.cursor.execute(statement)
+        self.connection.commit()
+
+
+    def find_teams(self, name, country, year):
+        condition=''
+        if(name.strip()):
+            condition+=""" NAME LIKE '%{}%' """.format(name)
+        if(country.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" COUNTRY LIKE '%{}%' """.format(country)
+        if(year.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" YEAR = {} """.format(year)
+        if(condition.strip()):
+            condition=' WHERE '+ condition
+
+        statement = """ SELECT * FROM Teams """+condition
+        self.cursor.execute(statement)
+        return self.cursor
+
+
     def delete_team(self,Id):
         stement =""" DELETE FROM Teams WHERE ID={}""".format(Id)
         self.cursor.execute(stement)

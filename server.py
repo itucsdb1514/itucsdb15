@@ -62,6 +62,11 @@ def teamsList():
     dsn=app.config['dsn']
     return teamslist.teamsList(dsn)
 
+@app.route('/teamsList/Update', methods=['GET', 'POST'])
+def teamsListUpdate():
+    dsn=app.config['dsn']
+    return teamslist.updateTeamsList(dsn)
+
 @app.route('/coachesList', methods=['GET', 'POST'])
 def coachesList():
     dsn=app.config['dsn']
