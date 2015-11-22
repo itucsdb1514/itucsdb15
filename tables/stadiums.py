@@ -45,6 +45,30 @@ class Stadiums:
             self.cursor.execute(statement)
             self.connection.commit()
 
+    def update_stadium(self, Id, name, city, year):
+        statement = """UPDATE Stadiums SET NAME = '{}', CITY = '{}', YEAR = {} WHERE ID = {}""".format( name, city, year, Id)
+        self.cursor.execute(statement)
+        self.connection.commit()
+
+    def find_Stadiums(self, name, city, year):
+        condition=''
+        if(name.strip()):
+            condition+=""" NAME LIKE '%{}%' """.format(name)
+        if(city.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" CITY LIKE '%{}%' """.format(country)
+        if(year.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" YEAR = {} """.format(year)
+        if(condition.strip()):
+            condition=' WHERE '+ condition
+
+        statement = """ SELECT * FROM Stadiums """+condition
+        self.cursor.execute(statement)
+        return self.cursor
+
     def close_con(self):
         self.connection.close()
 

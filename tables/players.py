@@ -10,7 +10,6 @@ class Players:
         try:
             stat1 = """ DROP TABLE PLAYERS """
             self.cursor.execute(stat1)
-            print('*********')
             self.connection.commit()
         except dbapi2.DatabaseError:
             self.connection.rollback()

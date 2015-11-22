@@ -84,15 +84,15 @@ class Coaches:
         statement = """ SELECT Coaches.ID,Teams.Name,Coaches.NAME,Coaches.COUNTRY,AGE FROM Coaches INNER JOIN Teams ON Teams.ID=Coaches.FK_TeamsID  """
         condition=''
         if(team.strip()):
-            condition+=""" Teams.Name='{}' """.format(team)
+            condition+=""" Teams.Name LIKE '%{}%'""".format(team)
         if(name.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" Coaches.NAME='{}' """.format(name)
+            condition+=""" Coaches.NAME LIKE '%{}%' """.format(name)
         if(country.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" Coaches.COUNTRY='{}' """.format(country)
+            condition+=""" Coaches.COUNTRY LIKE '%{}%' """.format(country)
         if(age.strip()):
             if(condition.strip()):
                 condition+='AND'

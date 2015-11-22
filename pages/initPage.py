@@ -5,6 +5,7 @@ from tables import stadiums
 from tables import nats
 from tables import comments
 from tables import coaches
+from tables import matches
 from pages import HomePage
 
 def InitPageFunc(dsn):
@@ -27,6 +28,9 @@ def InitPageFunc(dsn):
         stadiumTable = stadiums.Stadiums(dsn)
         stadiumTable.create_table()
         stadiumTable.close_con()
+        matchTable = matches.Matches(dsn)
+        matchTable.create_table()
+        matchTable.close_con()
         commentTable = comments.Comments(dsn)
         commentTable.create_table()
         commentTable.close_con()
