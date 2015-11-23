@@ -5,9 +5,10 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist
+from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist, userslist
 from tables import sponsors
 from tables import players
+from tables import users
 from tables import teams
 from tables import stadiums
 from tables import comments
@@ -58,10 +59,20 @@ def playersList():
     dsn=app.config['dsn']
     return playerslist.playersList(dsn)
 
+@app.route('/usersList', methods=['GET', 'POST'])
+def usersList():
+    dsn=app.config['dsn']
+    return userslist.usersList(dsn)
+
 @app.route('/playersList/Update', methods=['GET', 'POST'])
 def playersListUpdate():
     dsn=app.config['dsn']
     return playerslist.updatePlayersList(dsn)
+
+@app.route('/usersList/Update', methods=['GET', 'POST'])
+def usersListUpdate():
+    dsn=app.config['dsn']
+    return userslist.updateUsersList(dsn)
 
 @app.route('/natsList', methods=['GET', 'POST'])
 def natsList():
