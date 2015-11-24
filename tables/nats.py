@@ -20,13 +20,13 @@ class Nats:
                 FK_PlayersID INTEGER REFERENCES PLAYERS ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Oflu', 1)"""
+            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Venezuelan', 1)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Turkish', 2)"""
+            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('American', 2)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Bulgarian', 3)"""
+            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('American', 3)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('Spanish', 4)"""
+            stat1 = """ INSERT INTO NATS (NAT, FK_PlayersID) VALUES('American', 4)"""
             self.cursor.execute(stat1)
             self.connection.commit()
         except dbapi2.DatabaseError:
