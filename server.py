@@ -6,6 +6,7 @@ import re
 from flask import Flask
 from flask import render_template,request,url_for,redirect
 from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist
+from pages import PHDetail
 from tables import sponsors
 from tables import players
 from tables import teams
@@ -14,6 +15,7 @@ from tables import comments
 from tables import coaches
 from tables import nats
 from tables import matches
+from tables import playerHistory
 
 
 app = Flask(__name__)
@@ -23,7 +25,7 @@ app = Flask(__name__)
 def home():
     return HomePage.HomePageFunc()
 
-@app.route('/initDB')
+@app.route('/initDB/')
 def InitDb():
     return initPage.InitPageFunc(app.config['dsn'])
 
@@ -37,12 +39,6 @@ def sponsorsList():
 def stadiumsList():
     dsn=app.config['dsn']
     return stadiumslist.stadiumsList(dsn)
-
-@app.route('/stadiumsList/Update', methods=['GET', 'POST'])
-def stadiumsListUpdate():
-    dsn=app.config['dsn']
-    return stadiumslist.updateStadiumsList(dsn)
-
 @app.route('/matchesList', methods=['GET', 'POST'])
 def matchesList():
     dsn=app.config['dsn']
@@ -52,8 +48,14 @@ def matchesList():
 def matchesListUpdate():
     dsn=app.config['dsn']
     return matcheslist.updateMatchesList(dsn)
+@app.route('/stadiumsList/Update', methods=['GET', 'POST'])
+def stadiumsListUpdate():
+    dsn=app.config['dsn']
+    return stadiumslist.updateStadiumsList(dsn)
 
-@app.route('/playersList', methods=['GET', 'POST'])
+
+
+@app.route('/playersList/', methods=['GET', 'POST'])
 def playersList():
     dsn=app.config['dsn']
     return playerslist.playersList(dsn)
@@ -103,7 +105,10 @@ def commentsListUpdate():
     dsn=app.config['dsn']
     return commentslist.updateCommentsList(dsn)
 
-
+@app.route('/PlayersHistory/<int:id>/', methods=['GET', 'POST'])
+def playerHistory(id):
+    dsn=app.config['dsn']
+    return PHDetail.PHDetail(dsn,id)
 
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
@@ -124,5 +129,5 @@ if __name__ == '__main__':
     if VCAP_SERVICES is not None:
         app.config['dsn'] = get_elephantsql_dsn(VCAP_SERVICES)
     else:
-        app.config['dsn'] =  """host='localhost' port=54321  password='vagrant' user='vagrant' dbname='itucsdb'"""
+        app.config['dsn'] =  """host='/var/run/postgresql' port=5432  password='123456' user='postgres' dbname='itucsdb15'"""
     app.run(host='0.0.0.0', port=port, debug=debug)

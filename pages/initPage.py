@@ -6,7 +6,9 @@ from tables import nats
 from tables import comments
 from tables import coaches
 from tables import matches
+from tables import playerHistory
 from pages import HomePage
+
 
 def InitPageFunc(dsn):
     for x in range(0, 2):
@@ -34,5 +36,8 @@ def InitPageFunc(dsn):
         commentTable = comments.Comments(dsn)
         commentTable.create_table()
         commentTable.close_con()
+        playerHis = playerHistory.playerHistory(dsn)
+        playerHis.create_table()
+        playerHis.close_con()
 
     return HomePage.HomePageFunc()

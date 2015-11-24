@@ -28,6 +28,7 @@
 				<td>{{row[1]}} </td>
 				<td>{{row[2]}} </td>
 				<td>{{row[3]}}</td>
+				<td> <a href={{url_for('playerHistory',id=row[0])}}>Players History</a></td>
 			{%endif%}
 		    </tr>
 		{% endfor %}
