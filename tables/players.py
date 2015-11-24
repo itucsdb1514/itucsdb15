@@ -22,7 +22,7 @@ class Players:
                 ) """
             self.cursor.execute(stat1)
             print('*********')
-            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Miguel Cabrera', 'Venezuela', 32)"""
+            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Miguel Cabrera', 'USA', 32)"""
             self.cursor.execute(stat1)
             stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Dee Gordon', 'USA', 27)"""
             self.cursor.execute(stat1)
