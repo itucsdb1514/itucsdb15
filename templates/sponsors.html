@@ -22,7 +22,11 @@
 				<td></td>
 				<td><input type="text" name="Name" value="" />    </td>
 				<td><input type="text" name="Country" value="" /> </td>
-				<td><input type="number" name="Count" value="" />     </td>
+				<td><select name="Team">
+				{% for pair in TeamSelect %}
+  					<option value="{{pair[0]}}">{{pair[1]}}</option>
+  				{% endfor %}
+				</select></td>
 		    </tr>
 		</table>
 		<input type="submit" name="Add"value="Add" />

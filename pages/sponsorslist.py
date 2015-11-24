@@ -1,6 +1,6 @@
 
 from flask import url_for,redirect,render_template,request
-from tables import sponsors
+from tables import sponsors,teams
 import datetime
 
 def sponsorsList(dsn):
@@ -8,7 +8,9 @@ def sponsorsList(dsn):
     if request.method == 'GET':
         now = datetime.datetime.now()
         data=sponsorTable.select_sponsors()
-        return render_template('sponsors.html', current_time=now.ctime(),rows=data)
+        ts=teams.Teams(dsn)
+        tDatas=ts.select_teams()
+        return render_template('sponsors.html', current_time=now.ctime(),rows=data,TeamSelect=tDatas)
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:
@@ -18,7 +20,7 @@ def sponsorsList(dsn):
     elif 'Add' in request.form:
         name=request.form['Name']
         country=request.form['Country']
-        age=request.form['Count']
+        age=request.form['Team']
         sponsorTable.add_sponsor(name,country,age)
         sponsorTable.close_con()
         return redirect(url_for('sponsorsList'))

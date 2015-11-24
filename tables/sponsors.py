@@ -45,7 +45,7 @@ class Sponsors:
 
     def add_sponsor(self, name, country, age):
         if(name.strip() and country.strip() ):
-            statement = """ INSERT INTO Sponsors (NAME, COUNTRY, Teams) VALUES('{}','{}',{})""".format(name, country, age)
+            statement = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('{}','{}',{})""".format(name, country, age)
             self.cursor.execute(statement)
             self.connection.commit()
 
