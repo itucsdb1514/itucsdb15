@@ -18,23 +18,23 @@ class Sponsors:
                 ID SERIAL PRIMARY KEY,
                 NAME VARCHAR(40),
                 COUNTRY VARCHAR(40),
-                EmployeeCount INTEGER
+                FK_Teams int REFERENCES Teams ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, EmployeeCount) VALUES('Ülker', 'Turkey', 23000)"""
+            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('Ülker', 'Turkey', 1)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, EmployeeCount) VALUES('Eti', 'Turkey', 30000)"""
+            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('Eti', 'Turkey', 2)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, EmployeeCount) VALUES('Efes', 'Turkey', 45000)"""
+            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('Efes', 'Turkey', 3)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, EmployeeCount) VALUES('Algida', 'Turkey', 2100)"""
+            stat1 = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('Algida', 'Turkey', 3)"""
             self.cursor.execute(stat1)
             self.connection.commit()
         except dbapi2.DatabaseError:
             self.connection.rollback()
 
     def select_sponsors(self):
-        statement = """ SELECT * FROM Sponsors """
+        statement = """ SELECT Sponsors.ID,Sponsors.NAME,Sponsors.COUNTRY,TEAMS.NAME   FROM Sponsors INNER JOIN TEAMS ON TEAMS.ID=Sponsors.FK_Teams """
         self.cursor.execute(statement)
         return self.cursor
 
@@ -45,7 +45,7 @@ class Sponsors:
 
     def add_sponsor(self, name, country, age):
         if(name.strip() and country.strip() ):
-            statement = """ INSERT INTO Sponsors (NAME, COUNTRY, EmployeeCount) VALUES('{}','{}',{})""".format(name, country, age)
+            statement = """ INSERT INTO Sponsors (NAME, COUNTRY, Teams) VALUES('{}','{}',{})""".format(name, country, age)
             self.cursor.execute(statement)
             self.connection.commit()
 
