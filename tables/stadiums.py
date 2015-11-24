@@ -57,7 +57,7 @@ class Stadiums:
         if(city.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" CITY LIKE '%{}%' """.format(country)
+            condition+=""" CITY LIKE '%{}%' """.format(city)
         if(year.strip()):
             if(condition.strip()):
                 condition+='AND'

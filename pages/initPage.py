@@ -1,5 +1,6 @@
 from tables import sponsors
 from tables import players
+from tables import users
 from tables import teams
 from tables import stadiums
 from tables import nats
@@ -15,6 +16,9 @@ def InitPageFunc(dsn):
         playerTable = players.Players(dsn)
         playerTable.create_table()
         playerTable.close_con()
+        userTable = users.Users(dsn)
+        userTable.create_table()
+        userTable.close_con()
         sponsorTable = sponsors.Sponsors(dsn)
         sponsorTable.create_table()
         sponsorTable.close_con()

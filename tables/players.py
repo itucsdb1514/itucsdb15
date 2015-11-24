@@ -22,13 +22,13 @@ class Players:
                 ) """
             self.cursor.execute(stat1)
             print('*********')
-            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Ahmet Sezer', 'Turkey', 23)"""
+            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Miguel Cabrera', 'USA', 32)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Yılmaz Kel', 'Turkey', 30)"""
+            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Dee Gordon', 'USA', 27)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Hüseyin Yavuz', 'Turkey', 45)"""
+            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Bryce Harper', 'USA', 23)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('Burak Bayboğa', 'Turkey', 21)"""
+            stat1 = """ INSERT INTO PLAYERS (NAME, COUNTRY, AGE) VALUES('DJ LeMahieu', 'USA', 27)"""
             self.cursor.execute(stat1)
             self.connection.commit()
         except dbapi2.DatabaseError:
