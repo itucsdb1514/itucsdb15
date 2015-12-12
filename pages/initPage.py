@@ -8,6 +8,7 @@ from tables import comments
 from tables import coaches
 from tables import matches
 from tables import playerHistory
+from tables import leagues
 from pages import HomePage
 
 
@@ -43,5 +44,8 @@ def InitPageFunc(dsn):
         playerHis = playerHistory.playerHistory(dsn)
         playerHis.create_table()
         playerHis.close_con()
+        leagueTable = leagues.Leagues(dsn)
+        leagueTable.create_table()
+        leagueTable.close_con()
 
     return HomePage.HomePageFunc()

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+	<form action="{{ url_for('leaguesList') }}" method="post">
+		<table>
+			<tr>
+				<td></td>
+				<td><input type="text" name="NameF" value="" /></td>
+				<td><input type="text" name="CountryF" value="" /></td>
+				<td><input type="text" name="YearF" value="" /></td>
+				<td><input type="submit" name="Find"value="Find" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><b>League Name </b></td>
+				<td><b>Origin </b></td>
+				<td><b>Foundation Year</b></td>
+		    	</tr>
+		{% for row in rows %}
+			<tr>
+				<td><input type="checkbox" name="movies_to_delete"value="{{row[0]}}" /></td>
+			{%if update == True %}
+				<td><input type="text" name="Name{{row[0]}}" value="{{row[1]}}" /></td>
+				<td><input type="text" name="Country{{row[0]}}" value="{{row[2]}}" /></td>
+				<td><input type="text" name="Year{{row[0]}}" value="{{row[3]}}" /></td>
+			{%else%}
+				<td>{{row[1]}} </td>
+				<td>{{row[2]}} </td>
+				<td>{{row[3]}}</td>
+			{%endif%}
+		    </tr>
+		{% endfor %}
+
+		{%if update == True %}
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Update2"value="Update" /></td>
+			</tr>
+		{%else%}
+			<tr>
+				<td></td>
+				<td><input type="text" name="Name" value="" /> </td>
+				<td><input type="text" name="Country" value="" /> </td>
+				<td><input type="text" name="Year" value="" /> </td>
+				<td><input type="submit" name="Add"value="Add" /></td>
+		    </tr>
+		    <tr>
+		    	<td></td>
+
+			</tr>
+			<tr>
+				<td><input type="submit" name="Delete"value="Delete" /></td>
+			</tr>
+		{%endif%}
+		</table>
+		{%if update == False %}
+				<br><br>
+    			<a href="/leaguesList/Update">Click For Update</a>
+    	{%endif%}
+	</form>
+{% endblock %}

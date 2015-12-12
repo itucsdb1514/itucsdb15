@@ -5,7 +5,7 @@ import re
 
 from flask import Flask
 from flask import render_template,request,url_for,redirect
-from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist, userslist
+from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist, userslist,leagueslist
 from pages import PHDetail
 from tables import sponsors
 from tables import players
@@ -16,7 +16,7 @@ from tables import comments
 from tables import coaches
 from tables import nats
 from tables import matches
-
+from tables import leagues
 
 app = Flask(__name__)
 
@@ -94,6 +94,17 @@ def teamsList():
 def teamsListUpdate():
     dsn=app.config['dsn']
     return teamslist.updateTeamsList(dsn)
+
+@app.route('/leaguesList', methods=['GET', 'POST'])
+def leaguesList():
+    dsn=app.config['dsn']
+    return leagueslist.leaguesList(dsn)
+
+@app.route('/leaguesList/Update', methods=['GET', 'POST'])
+def leaguesListUpdate():
+    dsn=app.config['dsn']
+    return leagueslist.updateLeaguesList(dsn)
+
 
 @app.route('/coachesList', methods=['GET', 'POST'])
 def coachesList():
