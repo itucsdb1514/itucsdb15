@@ -29,6 +29,9 @@ def InitPageFunc(dsn):
         teamTable = teams.Teams(dsn)
         teamTable.create_table()
         teamTable.close_con()
+        leagueTable = leagues.Leagues(dsn)
+        leagueTable.create_table()
+        leagueTable.close_con()
         coachTable = coaches.Coaches(dsn)
         coachTable.create_table()
         coachTable.close_con()
@@ -44,8 +47,6 @@ def InitPageFunc(dsn):
         playerHis = playerHistory.playerHistory(dsn)
         playerHis.create_table()
         playerHis.close_con()
-        leagueTable = leagues.Leagues(dsn)
-        leagueTable.create_table()
-        leagueTable.close_con()
+
 
     return HomePage.HomePageFunc()

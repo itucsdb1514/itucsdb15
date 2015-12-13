@@ -20,14 +20,15 @@ class Coaches:
                 NAME VARCHAR(40),
                 COUNTRY VARCHAR(40),
                 AGE INTEGER,
-                FK_TeamsID INTEGER REFERENCES Teams ON DELETE CASCADE ON UPDATE CASCADE
+                FK_TeamsID INTEGER REFERENCES Teams ON DELETE CASCADE ON UPDATE CASCADE,
+                FK_LeaguesID INTEGER REFERENCES Leagues ON DELETE CASCADE ON UPDATE CASCADE
                 ) """
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID) VALUES('Joe Girardi', 'USA', 51,1)"""
+            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID, FK_LeaguesID) VALUES('Joe Girardi', 'USA', 51,1,1)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID) VALUES('John Farrell', 'USA', 53,2)"""
+            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID, FK_LeaguesID) VALUES('John Farrell', 'USA', 53,2,1)"""
             self.cursor.execute(stat1)
-            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID) VALUES('Bruce Bochy', 'FRA', 60,3)"""
+            stat1 = """ INSERT INTO Coaches (NAME, COUNTRY, AGE, FK_TeamsID, FK_LeaguesID) VALUES('Bruce Bochy', 'FRA', 60,3,1)"""
             self.cursor.execute(stat1)
             self.connection.commit()
 
@@ -39,7 +40,7 @@ class Coaches:
         self.cursor.execute(statement)
         return self.cursor
 
-    def find_Coaches(self,team,name,country,age):
+    def find_Coaches(self,team,league,name,country,age):
         condition=''
         if(name.strip()):
             condition+=""" NAME LIKE '%{}%' """.format(name)
@@ -63,9 +64,9 @@ class Coaches:
         self.cursor.execute(stement)
         self.connection.commit()
 
-    def add_coach(self, team, name, country, age):
+    def add_coach(self, team, league, name, country, age):
         if(name.strip() and country.strip() ):
-            statement = """ INSERT INTO Coaches (FK_TeamsID, NAME, COUNTRY, AGE) VALUES({},'{}','{}',{})""".format(team, name, country, age)
+            statement = """ INSERT INTO Coaches (FK_TeamsID,FK_LeaguesID, NAME, COUNTRY, AGE) VALUES({},{},'{}','{}',{})""".format(team,league, name, country, age)
             self.cursor.execute(statement)
             self.connection.commit()
 
@@ -76,15 +77,17 @@ class Coaches:
 
 
     def select_Joint_Coach(self):
-        statement = """ SELECT Coaches.ID,Teams.Name,Coaches.NAME,Coaches.COUNTRY,AGE FROM Coaches INNER JOIN Teams ON Teams.ID=Coaches.FK_TeamsID  """
+        statement = """ SELECT Coaches.ID,Teams.Name,Leagues.Name, Coaches.NAME,Coaches.COUNTRY,AGE FROM Coaches INNER JOIN Teams ON Teams.ID=Coaches.FK_TeamsID INNER JOIN Leagues ON Leagues.ID=Coaches.FK_LeaguesID  """
         self.cursor.execute(statement)
         return self.cursor
 
-    def find_Joint_Coach(self,team,name,country,age):
-        statement = """ SELECT Coaches.ID,Teams.Name,Coaches.NAME,Coaches.COUNTRY,AGE FROM Coaches INNER JOIN Teams ON Teams.ID=Coaches.FK_TeamsID  """
+    def find_Joint_Coach(self,team,league,name,country,age):
+        statement = """ SELECT Coaches.ID,Teams.Name,Leagues.Name, Coaches.NAME,Coaches.COUNTRY,AGE FROM Coaches INNER JOIN Teams ON Teams.ID=Coaches.FK_TeamsID INNER JOIN Leagues ON Leagues.ID=Coaches.FK_LeaguesID """
         condition=''
         if(team.strip()):
             condition+=""" Teams.Name LIKE '%{}%'""".format(team)
+        if(league.strip()):
+            condition+=""" Leagues.Name LIKE '%{}%'""".format(league)
         if(name.strip()):
             if(condition.strip()):
                 condition+='AND'
