@@ -10,7 +10,8 @@ def sponsorsList(dsn):
         data=sponsorTable.select_sponsors()
         ts=teams.Teams(dsn)
         tDatas=ts.select_teams()
-        return render_template('sponsors.html', current_time=now.ctime(),rows=data,TeamSelect=tDatas)
+        return render_template('sponsors.html', current_time=now.ctime(),rows=data,
+                               TeamSelect=tDatas,)
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:

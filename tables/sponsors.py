@@ -48,7 +48,7 @@ class Sponsors:
         if(team.strip()):
             if(condition.strip()):
                 condition+='AND'
-            condition+=""" Sponsors.FK_Teams = {} """.format(team)
+            condition+=""" TEAMS.Name LIKE '%{}%' """.format(team)
         if(condition.strip()):
             condition=' WHERE '+ condition
         statement = """ SELECT Sponsors.ID,Sponsors.NAME,Sponsors.COUNTRY,TEAMS.NAME   FROM Sponsors INNER JOIN TEAMS ON TEAMS.ID=Sponsors.FK_Teams """
