@@ -53,7 +53,6 @@ class Sponsors:
             condition=' WHERE '+ condition
         statement = """ SELECT Sponsors.ID,Sponsors.NAME,Sponsors.COUNTRY,TEAMS.NAME   FROM Sponsors INNER JOIN TEAMS ON TEAMS.ID=Sponsors.FK_Teams """
         statement=statement+condition
-        print(statement)
         self.cursor.execute(statement)
         return self.cursor
     def delete_sponsor(self,Id):
@@ -66,10 +65,13 @@ class Sponsors:
             statement = """ INSERT INTO Sponsors (NAME, COUNTRY, FK_Teams) VALUES('{}','{}',{})""".format(name, country, age)
             self.cursor.execute(statement)
             self.connection.commit()
+    def update_sponsor(self, Id, name, country):
+        statement = """UPDATE Sponsors SET NAME = '{}', COUNTRY = '{}'WHERE ID = {}""".format( name, country, Id)
+        self.cursor.execute(statement)
+        self.connection.commit()
 
     def close_con(self):
         self.connection.close()
-
 
 
 

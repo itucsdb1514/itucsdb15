@@ -11,7 +11,7 @@ def sponsorsList(dsn):
         ts=teams.Teams(dsn)
         tDatas=ts.select_teams()
         return render_template('sponsors.html', current_time=now.ctime(),rows=data,
-                               TeamSelect=tDatas,)
+                               TeamSelect=tDatas,update=False)
     elif 'Delete' in request.form:
         keys = request.form.getlist('movies_to_delete')
         for key in keys:
@@ -33,4 +33,21 @@ def sponsorsList(dsn):
         now = datetime.datetime.now()
         tDatas=ts.select_teams()
         data=sponsorTable.Find_sponsors(name,country,team)
-        return render_template('sponsors.html', current_time=now.ctime(),rows=data,TeamSelect=tDatas)
+        return render_template('sponsors.html', current_time=now.ctime(),rows=data,TeamSelect=tDatas,update=False)
+    elif 'Update' in request.form:
+        keys = request.form.getlist('movies_to_delete')
+        for key in keys:
+           name=request.form['UName'+key]
+           country=request.form['UCountry'+key]
+           sponsorTable.update_sponsor(key, name, country)
+        sponsorTable.close_con()
+        return redirect(url_for('sponsorsList'))
+def sponsorsListUpdate(dsn):
+    sponsorTable = sponsors.Sponsors(dsn)
+    if request.method == 'GET':
+        now = datetime.datetime.now()
+        data=sponsorTable.select_sponsors()
+        ts=teams.Teams(dsn)
+        tDatas=ts.select_teams()
+        return render_template('sponsors.html', current_time=now.ctime(),rows=data,
+                               TeamSelect=tDatas,update=True)

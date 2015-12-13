@@ -66,7 +66,10 @@ class playerHistory:
             statement = """ INSERT INTO playerHistory (FK_Player, FK_Teams, starts,ends) VALUES({},{},'{}', '{}')""".format(player, team, start, end)
             self.cursor.execute(statement)
             self.connection.commit()
-
+    def Update_History(self, Id, start, end):
+        statement = """UPDATE playerHistory SET starts = '{}', ends = '{}'WHERE ID = {}""".format( start, end, Id)
+        self.cursor.execute(statement)
+        self.connection.commit()
     def delete_History(self,Id):
         stement =""" DELETE FROM playerHistory WHERE ID={}""".format(Id)
         self.cursor.execute(stement)

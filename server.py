@@ -34,7 +34,10 @@ def InitDb():
 def sponsorsList():
     dsn=app.config['dsn']
     return sponsorslist.sponsorsList(dsn)
-
+@app.route('/sponsorsList/Update', methods=['GET', 'POST'])
+def sponsorsListUpdate():
+    dsn=app.config['dsn']
+    return sponsorslist.sponsorsListUpdate(dsn)
 
 @app.route('/stadiumsList', methods=['GET', 'POST'])
 def stadiumsList():
@@ -142,7 +145,10 @@ def commentsListUpdate():
 def playerHistory(id):
     dsn=app.config['dsn']
     return PHDetail.PHDetail(dsn,id)
-
+@app.route('/playerHistory/Update/<int:id>', methods=['GET', 'POST'])
+def playerHistoryupdate(id):
+    dsn=app.config['dsn']
+    return PHDetail.PHDetailUpdate(dsn,id)
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
     uri = parsed["elephantsql"][0]["credentials"]["uri"]
@@ -163,4 +169,5 @@ if __name__ == '__main__':
         app.config['dsn'] = get_elephantsql_dsn(VCAP_SERVICES)
     else:
         app.config['dsn'] =  """host='localhost' port=54321  password='vagrant' user='vagrant' dbname='itucsdb'"""
+        app.config['dsn'] =  """host='/var/run/postgresql' port=5432  password='123456' user='postgres' dbname='postgres'"""
     app.run(host='0.0.0.0', port=port, debug=debug)

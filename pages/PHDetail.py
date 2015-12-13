@@ -13,7 +13,7 @@ def PHDetail(dsn,id):
         pDatas=ps.select_players()
         page= render_template('PHDetails.html', current_time=now.ctime(),
                               rows=datas, update = False,historyID=id,
-                              PlayerSelect=pDatas,TeamSelect=tDatas
+                              PlayerSelect=pDatas,TeamSelect=tDatas,
                               )
         playerH.close_con();
         return page
@@ -48,6 +48,29 @@ def PHDetail(dsn,id):
         page= render_template('PHDetails.html', current_time=now.ctime(),
                               rows=datas, update = False,historyID=id,
                               PlayerSelect=pDatas,TeamSelect=tDatas
+                              )
+        playerH.close_con();
+        return page
+    elif 'Update' in request.form:
+        keys = request.form.getlist('movies_to_delete')
+        for key in keys:
+           start=request.form['UStart'+key]
+           end=request.form['UEnd'+key]
+           playerH.Update_History(key, start, end)
+        playerH.close_con()
+        return redirect(url_for('playerHistory',id=id))
+def PHDetailUpdate(dsn,id):
+    playerH=playerHistory.playerHistory(dsn)
+    if request.method == 'GET':
+        now = datetime.datetime.now()
+        datas= playerH.Select_PlayersHistory(id);
+        ps=players.Players(dsn)
+        ts=teams.Teams(dsn)
+        tDatas=ts.select_teams()
+        pDatas=ps.select_players()
+        page= render_template('PHDetails.html', current_time=now.ctime(),
+                              rows=datas, update = True ,historyID=id,
+                              PlayerSelect=pDatas,TeamSelect=tDatas,
                               )
         playerH.close_con();
         return page
