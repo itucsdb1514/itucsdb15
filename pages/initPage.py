@@ -11,6 +11,7 @@ from tables import matches
 from tables import playerHistory
 from tables import leagues
 from pages import HomePage
+from tables import outfitTable
 
 
 def InitPageFunc(dsn):
@@ -51,6 +52,8 @@ def InitPageFunc(dsn):
         playerHis = playerHistory.playerHistory(dsn)
         playerHis.create_table()
         playerHis.close_con()
-
+        outfittable=outfitTable.outfits(dsn)
+        outfittable.create_table()
+        outfittable.close_con()
 
     return HomePage.HomePageFunc()

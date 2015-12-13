@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+	<form action="{{ url_for('outfitpage',id=TeamID) }}" method="post">
+		<table>
+
+			<tr>
+				<td></td>
+				<td><b>Team</b></td>
+				<td><b>OutFit</b></td>
+		    </tr>
+		{% for row in rows %}
+			<tr>
+				<td><input type="checkbox" name="movies_to_delete"value="{{row[0]}}" /></td>
+			{%if update == True %}
+				<td>{{row[1]}} </td>
+				<td><input type="text" name="ULink{{row[0]}}" value="{{row[2]}}" /></td>
+			{%else%}
+				<td>{{row[1]}} </td>
+				<td><img src="{{row[2]}}"  style="width:100px;height:100px;"></td>
+			{%endif%}
+		    </tr>
+		{% endfor %}
+
+		{%if update == True %}
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Update"value="Update" /></td>
+			</tr>
+		{%else%}
+			<tr>
+				<td></td>
+				<td><select name="Team">
+				{% for pair in teamSelect %}
+  					<option value="{{pair[0]}}">{{pair[1]}}</option>
+  				{% endfor %}
+				<td><input type="text" name="Link" value="" /> </td>
+		    </tr>
+		    <tr>
+		    	<td></td>
+				<td><input type="submit" name="Add"value="Add" /></td>
+				<td><input type="submit" name="Delete"value="Delete" /></td>
+			</tr>
+		{%endif%}
+		</table>
+		{%if update == False %}
+				<br><br>
+    			<a href="/outfit/Update/{{TeamID}}">Click For Update</a>
+    	{%endif%}
+	</form>
+{% endblock %}
