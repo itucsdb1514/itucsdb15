@@ -6,18 +6,8 @@ import re
 from flask import Flask
 from flask import render_template,request,url_for,redirect
 from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist, userslist,leagueslist, statslist
-from pages import PHDetail,outfitPage
-from tables import sponsors
-from tables import players
-from tables import users
-from tables import teams
-from tables import stadiums
-from tables import comments
-from tables import coaches
-from tables import nats
-from tables import stats
-from tables import matches
-from tables import leagues
+from pages import PHDetail,outfitPage ,likeslist
+
 
 app = Flask(__name__)
 
@@ -157,7 +147,15 @@ def outfitpage(id):
 def outfitpageUpdate(id):
     dsn=app.config['dsn']
     return outfitPage.outfitPageUpdate(dsn,id);
+@app.route('/likesList', methods=['GET', 'POST'])
+def likesList():
+    dsn=app.config['dsn']
+    return likeslist.likesList(dsn)
 
+@app.route('/likesList/Update', methods=['GET', 'POST'])
+def likesListUpdate():
+    dsn=app.config['dsn']
+    return likeslist.updateLikesList(dsn)
 def get_elephantsql_dsn(vcap_services):
     parsed = json.loads(vcap_services)
     uri = parsed["elephantsql"][0]["credentials"]["uri"]

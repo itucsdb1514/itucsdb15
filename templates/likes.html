@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+	<form action="{{ url_for('likesList') }}" method="post">
+		<table>
+			<tr>
+				<td></td>
+				<td><input type="text" name="UserF" value="" /></td>
+				<td><input type="text" name="PlayerF" value="" /></td>
+				<td><input type="text" name="StatusF" value="" /></td>
+				<td><input type="submit" name="Find"value="Find" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><b>User Name </b></td>
+				<td><b>Player Name </b></td>
+				<td><b>Like Status </b></td>
+		    </tr>
+		{% for row in rows %}
+			<tr>
+				<td><input type="checkbox" name="movies_to_delete"value="{{row[0]}}" /></td>
+			{%if update == True %}
+				<td>{{row[1]}} </td>
+				<td>{{row[2]}} </td>
+				<td><input type="text" name="Status{{row[0]}}" value="{{row[3]}}" /></td>
+
+			{%else%}
+				<td>{{row[1]}} </td>
+				<td>{{row[2]}} </td>
+				<td>{{row[3]}}</td>
+			{%endif%}
+		    </tr>
+		{% endfor %}
+
+		{%if update == True %}
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Update2"value="Update" /></td>
+			</tr>
+		{%else%}
+			<tr>
+				<td></td>
+				<td><select name="SelectUserStatus">
+				{% for pair in UsersSelect %}
+  					<option value="{{pair[0]}}">{{pair[1]}}</option>
+  				{% endfor %}
+					</select></td>
+				<td><select name="SelectPlayerStatus">
+				{% for pair in PlayersSelect %}
+  					<option value="{{pair[0]}}">{{pair[1]}}</option>
+  				{% endfor %}
+					</select></td>
+				<td><input type="text" name="Status" value="" /> </td>
+				<td><input type="submit" name="Add"value="Add" /></td>
+		    </tr>
+		    <tr>
+				<td><input type="submit" name="Delete"value="Delete" /></td>
+			</tr>
+		{%endif%}
+		</table>
+		{%if update == False %}
+				<br><br>
+    			<a href="/likesList/Update">Click For Update</a>
+    	{%endif%}
+	</form>
+{% endblock %}

@@ -12,7 +12,7 @@ from tables import playerHistory
 from tables import leagues
 from pages import HomePage
 from tables import outfitTable
-
+from tables import likes
 
 def InitPageFunc(dsn):
     for x in range(0, 2):
@@ -55,5 +55,8 @@ def InitPageFunc(dsn):
         outfittable=outfitTable.outfits(dsn)
         outfittable.create_table()
         outfittable.close_con()
+        likeTable = likes.Likes(dsn)
+        likeTable.create_table()
+        likeTable.close_con()
 
     return HomePage.HomePageFunc()
