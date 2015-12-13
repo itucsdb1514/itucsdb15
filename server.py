@@ -6,7 +6,7 @@ import re
 from flask import Flask
 from flask import render_template,request,url_for,redirect
 from pages import HomePage,initPage,sponsorslist, playerslist, teamslist, stadiumslist, commentslist, coacheslist, natslist, matcheslist, userslist,leagueslist, statslist
-from pages import PHDetail,outfitPage ,likeslist
+from pages import PHDetail,outfitPage ,likeslist, betrateslist
 
 
 app = Flask(__name__)
@@ -48,6 +48,16 @@ def matchesList():
 def matchesListUpdate():
     dsn=app.config['dsn']
     return matcheslist.updateMatchesList(dsn)
+
+@app.route('/betratesList/', methods=['GET', 'POST'])
+def betratesList():
+    dsn=app.config['dsn']
+    return betrateslist.betratesList(dsn)
+
+@app.route('/betratesList/Update', methods=['GET', 'POST'])
+def betratesListUpdate():
+    dsn=app.config['dsn']
+    return betrateslist.updateBetratesList(dsn)
 
 @app.route('/playersList/', methods=['GET', 'POST'])
 def playersList():
@@ -176,5 +186,4 @@ if __name__ == '__main__':
         app.config['dsn'] = get_elephantsql_dsn(VCAP_SERVICES)
     else:
         app.config['dsn'] =  """host='localhost' port=54321  password='vagrant' user='vagrant' dbname='itucsdb'"""
-        app.config['dsn'] =  """host='/var/run/postgresql' port=5432  password='123456' user='postgres' dbname='postgres'"""
     app.run(host='0.0.0.0', port=port, debug=debug)

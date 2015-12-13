@@ -41,8 +41,8 @@ class Matches:
             self.cursor.execute(statement)
             self.connection.commit()
 
-    def update_match(self, Id, op1, op2):
-        statement = """UPDATE Matches SET OP1 = '{}', OP2 = '{}' WHERE ID = {}""".format(op1, op2, Id)
+    def update_match(self, Id, op1, op2, year):
+        statement = """UPDATE Matches SET OP1 = '{}', OP2 = '{}', YEAR={} WHERE ID = {}""".format(op1, op2, year, Id)
         self.cursor.execute(statement)
         self.connection.commit()
 

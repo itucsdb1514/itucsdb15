@@ -8,6 +8,7 @@ from tables import stats
 from tables import comments
 from tables import coaches
 from tables import matches
+from tables import betrates
 from tables import playerHistory
 from tables import leagues
 from pages import HomePage
@@ -46,6 +47,9 @@ def InitPageFunc(dsn):
         matchTable = matches.Matches(dsn)
         matchTable.create_table()
         matchTable.close_con()
+        betrateTable = betrates.Betrates(dsn)
+        betrateTable.create_table()
+        betrateTable.close_con()
         commentTable = comments.Comments(dsn)
         commentTable.create_table()
         commentTable.close_con()

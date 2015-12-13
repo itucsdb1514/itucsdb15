@@ -29,8 +29,8 @@ def matchesList(dsn):
         for key in keys:
             op1=request.form['OP1'+key]
             op2=request.form['OP2'+key]
-            
-            matchTable.update_match(key,op1,op2)
+            year=request.form['Year'+key]
+            matchTable.update_match(key,op1,op2,year)
         matchTable.close_con()
         return redirect(url_for('matchesListUpdate'))
     elif 'Find' in request.form:
