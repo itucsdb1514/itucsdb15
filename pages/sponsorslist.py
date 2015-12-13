@@ -20,7 +20,16 @@ def sponsorsList(dsn):
     elif 'Add' in request.form:
         name=request.form['Name']
         country=request.form['Country']
-        age=request.form['Team']
-        sponsorTable.add_sponsor(name,country,age)
+        team=request.form['Team']
+        sponsorTable.add_sponsor(name,country,team)
         sponsorTable.close_con()
         return redirect(url_for('sponsorsList'))
+    elif'Find' in request.form:
+        name=request.form['FName']
+        country=request.form['FCountry']
+        team=request.form['FTeam']
+        ts=teams.Teams(dsn)
+        now = datetime.datetime.now()
+        tDatas=ts.select_teams()
+        data=sponsorTable.Find_sponsors(name,country,team)
+        return render_template('sponsors.html', current_time=now.ctime(),rows=data,TeamSelect=tDatas)
