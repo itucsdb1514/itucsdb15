@@ -4,6 +4,7 @@ from tables import users
 from tables import teams
 from tables import stadiums
 from tables import nats
+from tables import stats
 from tables import comments
 from tables import coaches
 from tables import matches
@@ -26,6 +27,9 @@ def InitPageFunc(dsn):
         natTable = nats.Nats(dsn)
         natTable.create_table()
         natTable.close_con()
+        statTable = stats.Stats(dsn)
+        statTable.create_table()
+        statTable.close_con()
         teamTable = teams.Teams(dsn)
         teamTable.create_table()
         teamTable.close_con()
