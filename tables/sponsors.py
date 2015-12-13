@@ -37,7 +37,25 @@ class Sponsors:
         statement = """ SELECT Sponsors.ID,Sponsors.NAME,Sponsors.COUNTRY,TEAMS.NAME   FROM Sponsors INNER JOIN TEAMS ON TEAMS.ID=Sponsors.FK_Teams """
         self.cursor.execute(statement)
         return self.cursor
-
+    def Find_sponsors(self,name,country,team):
+        condition=''
+        if(name.strip()):
+            condition+=""" Sponsors.NAME LIKE '%{}%' """.format(name)
+        if(country.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" Sponsors.COUNTRY LIKE '%{}%' """.format(country)
+        if(team.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" TEAMS.Name LIKE '%{}%' """.format(team)
+        if(condition.strip()):
+            condition=' WHERE '+ condition
+        statement = """ SELECT Sponsors.ID,Sponsors.NAME,Sponsors.COUNTRY,TEAMS.NAME   FROM Sponsors INNER JOIN TEAMS ON TEAMS.ID=Sponsors.FK_Teams """
+        statement=statement+condition
+        print(statement)
+        self.cursor.execute(statement)
+        return self.cursor
     def delete_sponsor(self,Id):
         stement =""" DELETE FROM Sponsors WHERE ID={}""".format(Id)
         self.cursor.execute(stement)

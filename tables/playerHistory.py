@@ -32,10 +32,30 @@ class playerHistory:
             self.connection.commit()
         except dbapi2.DatabaseError:
             self.connection.rollback()
-    def Select_PlayersHisory(self,id):
+    def Select_PlayersHistory(self,id):
         query="""SELECT playerHistory.ID,PLAYERS.NAME,TEAMS.NAME,starts,ends FROM playerHistory
         INNER JOIN PLAYERS ON PLAYERS.ID=playerHistory.FK_Player
         INNER JOIN  Teams ON Teams.ID=FK_Teams WHERE FK_Player={}""".format(id)
+        self.cursor.execute(query)
+        return self.cursor
+    def Find_PlayersHistory(self,id,Team,Start,End):
+        condition=''
+        if(Team.strip()):
+            condition+=""" Teams.Name LIKE '%{}%' """.format(Team)
+        if(Start.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" playerHistory.starts = '{}' """.format(Start)
+        if(End.strip()):
+            if(condition.strip()):
+                condition+='AND'
+            condition+=""" playerHistory.ends = '{}' """.format(End)
+        if(condition.strip()):
+            condition=' AND '+ condition
+        query="""SELECT playerHistory.ID,PLAYERS.NAME,TEAMS.NAME,starts,ends FROM playerHistory
+        INNER JOIN PLAYERS ON PLAYERS.ID=playerHistory.FK_Player
+        INNER JOIN  Teams ON Teams.ID=FK_Teams WHERE FK_Player={} """.format(id)
+        query=query+condition
         self.cursor.execute(query)
         return self.cursor
     def close_con(self):
