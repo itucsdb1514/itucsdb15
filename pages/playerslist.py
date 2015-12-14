@@ -37,7 +37,7 @@ def playersList(dsn):
         country=request.form['CountryF']
         age=request.form['AgeF']
         data=playerTable.find_Players(name, country, age)
-        temp=render_template('players.html', current_time=now.ctime(),rows=data, update=False)
+        temp=render_template('players.html',  current_time=now.ctime(),rows=data, update=False)
         playerTable.close_con()
         return temp
 
