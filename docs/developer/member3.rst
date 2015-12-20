@@ -1,14 +1,14 @@
 Parts Implemented by Hüseyin Yavuz
-==================================
-
-1 Teams Table
--------------
-
-1.1 teams.py
-++++++++++++
+**********************************
 
 
-Sql Statements are executed with the functions of the Teams class.
+
+1 Database Design
+=================
+
+
+1.1 Teams Table
+---------------
 
 
                 +---------------+------------+
@@ -24,7 +24,64 @@ Sql Statements are executed with the functions of the Teams class.
                 +---------------+------------+
 
 
-__init__ function of Teams class:
+
+
+1.2 Coaches Table
+-----------------
+
+
+                +---------------+------------+
+                |Name           |Type        |
+                +===============+============+
+                |id             |INTEGER     |
+                +---------------+------------+
+                |name           |varchar(40) |
+                +---------------+------------+
+                |country        |varchar(40) |
+                +---------------+------------+
+                |age            |INTEGER     |
+                +---------------+------------+
+                |team id        |INTEGER     |
+                +---------------+------------+
+                |league id      |INTEGER     |
+                +---------------+------------+
+
+Team id is a foreign key and it references to the Teams table. Team name is used in Coaches table.
+
+League id is a foreign key and it references to the Leagues table. League name is used in Coaches table.
+
+1.3 Leagues Table
+-----------------
+
+                +---------------+------------+
+                |Name           |Type        |
+                +===============+============+
+                |id             |INTEGER     |
+                +---------------+------------+
+                |name           |varchar(40) |
+                +---------------+------------+
+                |country        |varchar(40) |
+                +---------------+------------+
+                |year           |INTEGER     |
+                +---------------+------------+
+                |team id        |INTEGER     |
+                +---------------+------------+
+
+Team id is a foreign key and it references to the Teams table. Team name is used in Leagues table.
+
+2 Code
+======
+
+2.1 Teams Table
+---------------
+Sql Statements are executed with the functions of the Teams class.
+
+2.1.1 teams.py
+++++++++++++++
+
+
+
+**__init__ function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -36,7 +93,7 @@ __init__ function of Teams class:
 Constructor of the team class.
 
 
-create_table function of Teams class:
+**create_table function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -70,7 +127,7 @@ create_table function of Teams class:
 This code first drops Teams table. Then it creates the Teams table and insert initial tuples to the table.
 
 
-select_teams function of Teams class:
+**select_teams function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -83,7 +140,7 @@ select_teams function of Teams class:
 This code lists all the tuples in the Teams table.
 
 
-update_team function of Teams class:
+**update_team function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -96,7 +153,7 @@ update_team function of Teams class:
 This code updates the attributes of the Teams table.
 
 
-find_teams function of Teams class:
+**find_teams function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -122,7 +179,7 @@ find_teams function of Teams class:
 
 This code finds the tuples of Teams table according to the searching criteria.
 
-delete_team function of Teams class:
+**delete_team function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -134,7 +191,7 @@ delete_team function of Teams class:
 
 This code deletes the tuple which is selected.
 
-add_team function of Teams class:
+**add_team function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -147,7 +204,7 @@ add_team function of Teams class:
 
  This code adds a tuple to Teams table.
 
- close_con function of Teams class:
+ **close_con function of Teams class:**
 
 .. code-block:: python
     :linenos:
@@ -158,10 +215,10 @@ add_team function of Teams class:
 This code closes the connection.
 
 
-1.2 teamslist.py
-++++++++++++++++
+2.1.2 teamslist.py
+++++++++++++++++++
 
-teamsList function:
+**teamsList function:**
 
 .. code-block:: python
     :linenos:
@@ -231,7 +288,7 @@ This code gets the up-to-date values, calls the update_team function and updates
 This code gets the searching criteria, calls the find_teams function and finds the requested tuple(s).
 
 
-updateTeamsList function:
+**updateTeamsList function:**
 
 .. code-block:: python
     :linenos:
@@ -248,38 +305,15 @@ updateTeamsList function:
 This code gets the update page when the "click for update" button is pressed and makes the boolean "update" value True.
 
 
-2 Coaches Table
----------------
-
-2.1 coaches.py
-++++++++++++++
-
-
+2.2 Coaches Table
+-----------------
 Sql Statements are executed with the functions of the Coaches class.
 
-
-                +---------------+------------+
-                |Name           |Type        |
-                +===============+============+
-                |id             |INTEGER     |
-                +---------------+------------+
-                |name           |varchar(40) |
-                +---------------+------------+
-                |country        |varchar(40) |
-                +---------------+------------+
-                |age            |INTEGER     |
-                +---------------+------------+
-                |team id        |INTEGER     |
-                +---------------+------------+
-                |league id      |INTEGER     |
-                +---------------+------------+
-
-Team id is a foreign key and it references to the Teams table. Team name is used in Coaches table.
-
-League id is a foreign key and it references to the Leagues table. League name is used in Coaches table.
+2.2.1 coaches.py
+++++++++++++++++
 
 
-__init__ function of Coaches class:
+**__init__ function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -290,7 +324,7 @@ __init__ function of Coaches class:
 
 Constructor of the Coaches class.
 
-create_table function of Coaches class:
+**create_table function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -328,7 +362,7 @@ create_table function of Coaches class:
 This code first drops Coaches table. Then it creates the Coaches table and insert initial tuples to the table.
 
 
-select_coaches function of Coaches class:
+**select_coaches function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -340,7 +374,7 @@ select_coaches function of Coaches class:
 
 This code lists all the tuples in the Coaches table.
 
-find_coaches function of Coaches class:
+**find_coaches function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -367,7 +401,7 @@ find_coaches function of Coaches class:
 
 This code finds the tuples of Coaches table according to the searching criteria.
 
-delete_coach function of Coaches class:
+**delete_coach function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -380,7 +414,7 @@ delete_coach function of Coaches class:
 
 This code deletes the tuple which is selected.
 
-add_coach function of Coaches class:
+**add_coach function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -394,7 +428,7 @@ add_coach function of Coaches class:
 This code adds a tuple to Coaches table.
 
 
-update_coach function of Coaches class:
+**update_coach function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -408,7 +442,7 @@ update_coach function of Coaches class:
 This code updates the attributes of the Coaches table except the foreign keys.
 
 
-select_Joint_Coach function of Coaches class:
+**select_Joint_Coach function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -420,7 +454,7 @@ select_Joint_Coach function of Coaches class:
 
 This code lists all the tuples in Coaches table with the foreign keys.
 
-find_Joint_Coach function of Coaches class:
+**find_Joint_Coach function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -451,7 +485,7 @@ find_Joint_Coach function of Coaches class:
 
 This code finds the tuples of Coaches table according to the searching criteria with foreign keys.
 
-close_con function of Coaches class:
+**close_con function of Coaches class:**
 
 .. code-block:: python
     :linenos:
@@ -462,10 +496,10 @@ close_con function of Coaches class:
 This code closes the connection.
 
 
-2.2 coacheslist.py
-++++++++++++++++++
+2.2.2 coacheslist.py
+++++++++++++++++++++
 
-coachesList function:
+**coachesList function:**
 
 .. code-block:: python
     :linenos:
@@ -546,7 +580,7 @@ This code gets the up-to-date values, calls the update_coach function and update
 
 This code gets the searching criteria, calls the find_Joint_Coach function and finds the requested tuple(s). It also calls select functions of leagues class and teams class because of the foreign keys.
 
-updateCoachesList:
+**updateCoachesList:**
 
 .. code-block:: python
     :linenos:
@@ -562,36 +596,14 @@ updateCoachesList:
 
 This code gets the update page when the "click for update" button is pressed and makes the boolean "update" value True.
 
-3 Leagues Table
----------------
-
-3.1 leagues.py
-++++++++++++++
-
-
+2.3 Leagues Table
+-----------------
 Sql Statements are executed with the functions of the Leagues class.
 
+2.3.1 leagues.py
+++++++++++++++++
 
-                +---------------+------------+
-                |Name           |Type        |
-                +===============+============+
-                |id             |INTEGER     |
-                +---------------+------------+
-                |name           |varchar(40) |
-                +---------------+------------+
-                |country        |varchar(40) |
-                +---------------+------------+
-                |year           |INTEGER     |
-                +---------------+------------+
-                |team id        |INTEGER     |
-                +---------------+------------+
-
-
-Team id is a foreign key and it references to the Teams table. Team name is used in Leagues table.
-
-
-
-__init__ function of Leagues class:
+**__init__ function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -602,7 +614,7 @@ __init__ function of Leagues class:
 
 Constructor of the Leagues class.
 
-create_table function of Leagues class:
+**create_table function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -638,7 +650,7 @@ create_table function of Leagues class:
 This code first drops Leagues table. Then it creates the Leagues table and insert initial tuples to the table.
 
 
-select_leagues function of Leagues class:
+**select_leagues function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -650,7 +662,7 @@ select_leagues function of Leagues class:
 
 This code lists all the tuples in the Leagues table.
 
-find_leagues function of Leagues class:
+**find_leagues function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -677,7 +689,7 @@ find_leagues function of Leagues class:
 
 This code finds the tuples of Leagues table according to the searching criteria.
 
-delete_league function of Leagues class:
+**delete_league function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -690,7 +702,7 @@ delete_league function of Leagues class:
 
 This code deletes the tuple which is selected.
 
-add_league function of Leagues class:
+**add_league function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -704,7 +716,7 @@ add_league function of Leagues class:
 This code adds a tuple to Leagues table.
 
 
-update_league function of Leagues class:
+**update_league function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -718,7 +730,7 @@ update_league function of Leagues class:
 This code updates the attributes of the Leagues table except the foreign key.
 
 
-select_Joint_League function of Leagues class:
+**select_Joint_League function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -730,7 +742,7 @@ select_Joint_League function of Leagues class:
 
 This code lists all the tuples in Leagues table with the foreign key.
 
-find_Joint_League function of Leagues class:
+**find_Joint_League function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -759,7 +771,7 @@ find_Joint_League function of Leagues class:
 
 This code finds the tuples of Leagues table according to the searching criteria with the foreign key.
 
-close_con function of Leagues class:
+**close_con function of Leagues class:**
 
 .. code-block:: python
     :linenos:
@@ -772,10 +784,10 @@ This code closes the connection.
 
 
 
-3.2 leagueslist.py
-++++++++++++++++++
+2.3.2 leagueslist.py
+++++++++++++++++++++
 
-leaguesList function:
+**leaguesList function:**
 
 .. code-block:: python
     :linenos:
@@ -850,7 +862,7 @@ This code gets the up-to-date values, calls the update_league function and updat
 
 This code gets the searching criteria, calls the find_Joint_League function and finds the requested tuple(s). It also calls select function of teams class because of the foreign key.
 
-updateLeaguesList:
+**updateLeaguesList:**
 
 .. code-block:: python
     :linenos:
