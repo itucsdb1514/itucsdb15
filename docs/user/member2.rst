@@ -7,7 +7,7 @@ Stadiums Page
 
 .. figure:: stadiumsPage.PNG
       :scale: 50 %
-      :alt: screenshot of players page
+      :alt: screenshot of stadiums page
 
 This page contains information about the stadiums, the year they were built in and the city they're in. The user is allowed to add, delete and update the information about
 the stadiums. The user can also search stadiums using one or more of the attributes.
