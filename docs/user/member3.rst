@@ -6,7 +6,6 @@ The pages created by Hüseyin Yavuz are the teams, coaches and leagues pages.
 Teams Page
 
 .. figure:: teamsPage.PNG
-      :scale: 50 %
       :alt: screenshot of teams page
 
 This page contains information about the teams, the country where they play and their foundation year. It also has links for each team that
@@ -17,7 +16,6 @@ these teams. The user can also search teams using one or more of the attributes.
 Coaches Page
 
 .. figure:: coachesPage.PNG
-      :scale: 50 %
       :alt: screenshot of coaches page
 
 This page contains information about the coaches of teams. It includes team name, league name, coach name, nationality and age. This page grabs information from the teams page and leagues page.
@@ -30,7 +28,6 @@ search coaches using one or more of the attributes.
 Leagues Page
 
 .. figure:: leaguesPage.PNG
-      :scale: 50 %
       :alt: screenshot of leagues page
 
 This page contains the information about leagues of respective team. It includes the team name, league name, origin and foundation year. This page grabs
