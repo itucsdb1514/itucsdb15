@@ -20,7 +20,7 @@ Main Page
 
 
 .. figure:: mainPage.PNG
-      :scale: 50 %
+      :scale: 5%
       :alt: screenshot of main page
 
 
