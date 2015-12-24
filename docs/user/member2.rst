@@ -7,7 +7,7 @@ Stadiums Page
 
 
 .. figure:: stadiumsPage.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of stadiums page
 
 This page contains information about the stadiums, the year they were built in and the city they're in. The user is allowed to add, delete and update the information about
@@ -17,7 +17,7 @@ the stadiums. The user can also search stadiums using one or more of the attribu
 Matches Page
 
 .. figure:: matchesPage.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of matches page
 
 This page contains information about the matches between teams. This page grabs information
@@ -29,7 +29,7 @@ search matches using one or more of the attributes.
 Bet Rates Page
 
 .. figure:: betRatesPage.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 This page contains the bet rates of matches. This page grabs
@@ -46,7 +46,7 @@ Add operation is explained in the screenshots provided below.
 Step One
 
 .. figure:: betRatesAdd1.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
@@ -54,7 +54,7 @@ Step One
 Step Two
 
 .. figure:: betRatesAdd2.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
@@ -66,14 +66,14 @@ Delete operation is explained in the screenshots provided below.
 Step One
 
 .. figure:: betRatesDelete1.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
 Step Two
 
 .. figure:: betRatesDelete2.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
@@ -85,14 +85,14 @@ Search operation is explained in the screenshots provided below.
 Step One
 
 .. figure:: betRatesFind1.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
 Step Two
 
 .. figure:: betRatesFind2.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
@@ -104,19 +104,19 @@ Update operation is explained in the screenshots provided below.
 Step One
 
 .. figure:: betRatesUpdate1.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 Step Two
 
 .. figure:: betRatesUpdate2.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 Step Three
 
 .. figure:: betRatesUpdate3.PNG
-      :scale: 5%
+      :scale: 50%
       :alt: screenshot of bet rates page
 
 
