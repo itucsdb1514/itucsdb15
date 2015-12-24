@@ -4,9 +4,11 @@ Parts Implemented by Hüseyin Tosun
 The pages created by Hüseyin Tosun are the users, comments, likes pages.
 
 Users Page
+----------
 
 .. figure:: usersPage.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of users page
 
 This page contains information about the user name, user type, and birth year. The user is allowed to add, delete and update the information about
@@ -14,9 +16,11 @@ these users. The user can also search users using one or more of the attributes.
 
 
 Comments Page
+-------------
 
 .. figure:: commentsPage.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of comments page
 
 This page contains information about the comments that the users entered.  This page grabs information
@@ -26,9 +30,11 @@ search comments using one or more of the attributes.
 
 
 Likes Page
+----------
 
 .. figure:: likesPage.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of likes page
 
 This page contains likes and dislikes which are entered by users. It allows the users to add likes or dislikes
@@ -47,12 +53,14 @@ Step One
 
 .. figure:: usersPageAdd1.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Step Two
 
 .. figure:: usersPageAdd2.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Sample Delete Operation
@@ -63,12 +71,14 @@ Step One
 
 .. figure:: usersPageDelete1.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Step Two
 
 .. figure:: usersPageDelete2.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 
@@ -81,12 +91,14 @@ Step One
 
 .. figure:: usersPageFind1.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Step Two
 
 .. figure:: usersPageFind2.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 
@@ -99,18 +111,21 @@ Step One
 
 .. figure:: usersPageUpdate1.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Step Two
 
 .. figure:: usersPageUpdate2.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 Step Three
 
 .. figure:: usersPageUpdate3.PNG
       :scale: 50 %
+      :align: left
       :alt: screenshot of players page
 
 

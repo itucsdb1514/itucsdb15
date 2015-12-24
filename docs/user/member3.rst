@@ -4,6 +4,7 @@ Parts Implemented by Hüseyin Yavuz
 The pages created by Hüseyin Yavuz are the teams, coaches and leagues pages.
 
 Teams Page
+----------
 
 .. figure:: teamsPage.PNG
       :alt: screenshot of teams page
@@ -16,6 +17,7 @@ The user can also search teams using one or more of the attributes.
 
 
 Coaches Page
+------------
 
 .. figure:: coachesPage.PNG
       :alt: screenshot of coaches page
@@ -30,13 +32,14 @@ The user can also search coaches using one or more of the attributes.
 
 
 Leagues Page
+------------
 
 .. figure:: leaguesPage.PNG
       :alt: screenshot of leagues page
 
 This page contains the information about leagues of respective team.
 It includes the team name, league name, origin and foundation year.
-This page grabs information about the teams. 
+This page grabs information about the teams.
 The user can add information about leagues of respective team.
 The user is allowed to add, update and delete the information about leagues.
 The user can also search for entries using one or more of the attributes.

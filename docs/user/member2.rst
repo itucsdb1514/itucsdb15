@@ -5,6 +5,7 @@ The pages created by Burak Bayboğa are the stadiums, matches and bet rates page
 
 Stadiums Page
 
+
 .. figure:: stadiumsPage.PNG
       :scale: 50 %
       :alt: screenshot of stadiums page
